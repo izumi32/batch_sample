@@ -1,0 +1,17 @@
+# docker engineのバージョン(docker -v)と対応するバージョン
+# https://matsuand.github.io/docs.docker.jp.onthefly/compose/compose-file/compose-versioning/
+version: '3.8'
+# 稼働させたいコンテナ毎に設定を記述
+services:
+  mysql:
+    # コンテナで使用するdockerのイメージ
+    image: mysql:8.0
+    # ローカルのディレクトリをコンテナ内のディレクトリとして提供
+    volumes:
+      - ./tmp/mysql:/var/lib/mysql
+      # 接続のポート番号(MqSQLは通常3306を使用)
+    ports:
+      - 3306:3306
+      # コンテナにあらかじめ設定する環境変数
+    environment:
+      - MYSQL_ROOT_PASSWORD=batch
