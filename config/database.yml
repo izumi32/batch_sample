@@ -5,21 +5,30 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  # mysql2のgemを指定
+  adapter: mysql2
+  # データベースと接続するときの文字コード
+  encording: utf8mb4
+  charset: utf8mb4
+  collation: utf8mb4_bin
+  host: <%= ENV['MYSQL_HOST'] || '127.0.0.1' %>
+  port: <%= ENV['MYSQL_PORT'] || 3306 %>
+  username: <%= ENV['MYSQL_USER'] || 'batch_user' %>
+  password: <%= ENV['MYSQL_PASSWORD'] || 'batch' %>
+  database: batch_dev
 
 development:
   <<: *default
-  database: db/development.sqlite3
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
+  # データベース名を変更
+  database: batch_test
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  # データベース名を変更
+  database: batch
