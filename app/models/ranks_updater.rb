@@ -10,7 +10,7 @@ class RanksUpdater
   private
 
   def create_ranks
-    RankOrderMarker.new.each_ranked_user do |user, rank|
+    RankOrderMaker.new.each_ranked_user do |user, rank|
       Rank.create(
         user_id: user.id,
         rank: rank,

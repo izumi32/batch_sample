@@ -1,7 +1,6 @@
-class RankOrderMarker
+class RankOrderMaker
 
   def each_ranked_user
-
     rank = 1
     previous_score = 0
 
