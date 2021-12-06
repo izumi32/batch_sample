@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_03_075258) do
+ActiveRecord::Schema.define(version: 2021_12_06_065651) do
 
   create_table "ranks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", comment: "ランキング情報", force: :cascade do |t|
-    t.bigint "user_id", null: false, comment: "ユーザー"
     t.integer "rank", default: 0, null: false, comment: "順位"
     t.integer "score", default: 0, null: false, comment: "このランクに至ったスコア"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false, comment: "ユーザー"
     t.index ["rank"], name: "index_ranks_on_rank"
     t.index ["user_id"], name: "index_ranks_on_user_id", unique: true
   end
@@ -38,6 +38,6 @@ ActiveRecord::Schema.define(version: 2021_12_03_075258) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "ranks", "users", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "ranks", "users"
   add_foreign_key "user_scores", "users", on_update: :cascade, on_delete: :cascade
 end
