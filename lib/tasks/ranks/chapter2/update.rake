@@ -18,7 +18,7 @@ namespace :ranks do
                       .to_h
                       .values
 
-      sorted_total_score_group.each_with_index(1) do |user_total_scores, i|
+      sorted_total_score_groups.each.with_index(1) do |user_total_scores, i|
         user_total_scores.each do |user_total_score|
           Rank.create(
             user_id: user_total_score[:user_id],
